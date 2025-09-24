@@ -4,5 +4,5 @@ category: Interactive Apps
 subcategory: Pipeline
 role: batch_connect
 description: |
-  This app allows user to launch Nextflow jobs. You are required to input a `params.json` file.
+  This app allows user to launch Nextflow jobs. You are required to input a `params` JSON or YAML file with pipeline inputs.
 
