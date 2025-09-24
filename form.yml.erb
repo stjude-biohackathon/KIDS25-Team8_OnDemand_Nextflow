@@ -122,8 +122,7 @@ attributes:
   pipeline_url:
     widget: "text_field"
     label: "Pipeline URL"
-    help: |
-      The url of the Nextflow pipeline you want to run. For example `https://github.com/nf-core/rnaseq`, etc.
+    help: "The url of the Nextflow pipeline you want to run. For example `https://github.com/nf-core/rnaseq`, etc."
 
   run_uid:
     widget: "text_field"
@@ -159,7 +158,7 @@ attributes:
 form:
   - modules
   - choose_queue
-  - pipeline_name
+  - pipeline_url
   - version
   - run_uid
   - num_cores
@@ -168,7 +167,7 @@ form:
   - num_gpus
   - gpu_job
   - gpu_type
-  - nfcore_params
+  - nextflow_params
   - custom_config
   - bc_num_hours
   - bc_email_on_started
