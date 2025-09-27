@@ -11,8 +11,6 @@
 
 # **MUST** set cluster id here that matches cluster configuration file located
 # under /etc/ood/config/clusters.d/*.yml
-# @example Use the Owens cluster at Ohio Supercomputer Center
-#     cluster: "owens"
 cluster: "hpc"
 
 # Define attribute values that aren't meant to be modified by the user within
@@ -50,12 +48,6 @@ attributes:
   #  help: |
   #    Please check this box if you would like to distribute your request cores over multiple hosts.
 
-  version: 
-    widget: "text_field"
-    label: "Nextflow Pipeline Version"
-    help: |
-      Leave blank to run the latest. If you are running an nf-core pipeline, you have the option of using `dev`. It's highly recommended to use versioned releases of pipelines.
-  
   num_gpus: 
     widget: "number_field"
     label: "Number of GPUs"
@@ -108,21 +100,22 @@ attributes:
   # App Specific #
   ################
   #
-  start_resume:
-    widget: "select"
-    label: "Start/Resume?"
-    options:
-      - [
-        "start", "start"
-      ]
-      - [
-        "resume", "resume"
-      ]
-
-  pipeline_url:
+  pipeline_name:
     widget: "text_field"
-    label: "Pipeline URL"
-    help: "The url of the Nextflow pipeline you want to run. For example `https://github.com/nf-core/rnaseq`, etc."
+    label: "Pipeline Name or URL"
+    help: >
+      The name or URL of the Nextflow pipeline you want to run.
+      Pipelines hosted on Github can be launched with just the name.
+      For example, `nf-core/rnaseq`, where "nf-core" is the user and "rnaseq" is the repository.
+      If the pipeline is not hosted on Github, a full URL is required.
+
+  version: 
+  widget: "text_field"
+  label: "Nextflow Pipeline Version"
+  help: >
+    Leave blank to run the latest. 
+    If you are running an nf-core pipeline, you have the option of using `dev`. 
+    It's highly recommended to use versioned releases of pipelines.
 
   run_uid:
     widget: "text_field"
@@ -135,14 +128,14 @@ attributes:
     data-filepicker: true
     data-target-file-type: files # Valid values are: files, dirs, or both
     readonly: false
-    help: "Select your custom configuration file; leave blank to use the default (Recommended unless you know what you're doing)."
+    help: "Select your custom configuration file; leave blank to use the default (recommended unless you know what you're doing)."
 
   nextflow_params:
     label: "Nextflow Params File"
     data-filepicker: true
     data-target-file-type: files # Valid values are: files, dirs, or both
     readonly: false
-    help: "Select your params file (JSON or YAML)."
+    help: "Select your parameters file (JSON or YAML)."
 
 
 
@@ -158,7 +151,7 @@ attributes:
 form:
   - modules
   - choose_queue
-  - pipeline_url
+  - pipeline_name
   - version
   - run_uid
   - num_cores
