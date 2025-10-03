@@ -29,22 +29,6 @@ script:
     # Project/Job title
     - "-P"
     - "ood_nextflow"
-    # Keep GPUs optional, only if job is on a gpu queue request gpus
-    <% if gpu_job == "true" %>
-    - "-J" 
-    - "ood_nextflow_<%= num_cores.to_i %>CPU_<%= num_gpus.to_i %>GPU_<%= mem_size.to_i %>MEM_<%= bc_num_hours.to_i %>hr"
-    - "-gpu" 
-    - "num=<%= num_gpus.to_i %>/host"
-    # GPU Type
-    <% if gpu_type == "a100" %>
-    - "-R"
-    - "a100"
-    <% end %>
-    <% if gpu_type == "v100" %>
-    - "-R"
-    - "v100"
-    <% end %>
-    <% else %>
     - "-J" 
     - "ood_nextflow_<%= num_cores.to_i %>CPU_<%= mem_size.to_i %>MEM_<%= bc_num_hours.to_i %>hr"
     <% end %>

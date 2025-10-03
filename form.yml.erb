@@ -16,19 +16,6 @@ cluster: "hpc"
 # Define attribute values that aren't meant to be modified by the user within
 # the Dashboard form
 attributes:
-  # Set the corresponding modules that need to be loaded for Jupyter to run
-  #
-  # @note It is called within the batch job as `module load <modules>` if
-  #   defined
-  # @example Do not load any modules
-  #     modules: ""
-  # @example Using default python module
-  #     modules: "python"
-  # @example Using specific python module
-  #     modules: "python/3.5"
-  # @example Using combination of modules
-  #     modules: "python/3.5 cuda/8.0.44"
-  #modules: "jupyter/py-3.12"
   modules: "Nextflow/24.10.2"
 
   choose_queue: 
@@ -41,59 +28,8 @@ attributes:
     <%- end -%>
   
   single_node: 1
-  #  widget: "check_box"
-  #  label: "Request Cores on Multiple Nodes"
-  #  checked_value: 1
-  #  unchecked_value: 0
-  #  help: |
-  #    Please check this box if you would like to distribute your request cores over multiple hosts.
-
-  num_gpus: 
-    widget: "number_field"
-    label: "Number of GPUs"
-    value: 1
-    help: |
-      Number of GPUs (default 1).
-    min: 1
-    max: 8
-    step: 1
-
-  gpu_job:
-    widget: "hidden_field"
-  
   num_cores: 1
-  #  widget: "number_field"
-  #  label: "Number of cores"
-  #  value: 1
-  #  help: |
-  #    Number of cores on node type.
-  #  min: 1
-  #  max: 28
-  #  step: 1
-  
-  mem_size: 16000
-  #  widget: "number_field"
-  #  label: "Memory Size (MB)"
-  #  value: 4000
-  #  help: |
-  #    Size of memory to request per core (default 4 GB per core).
-  #  min: 2000
-  #  max: 32000
-  #  step: 500
-
-  gpu_type:
-    widget: "select"
-    label: "GPU Type"
-    options:
-      - [
-        "any", "any"
-      ]
-      - [
-        "A100", "a100"
-      ]
-      - [
-        "A100 80GB", "a100_80"
-      ]
+  mem_size: 8000
 
  
   ################
@@ -158,8 +94,6 @@ form:
   - single_node
   - mem_size
   - num_gpus
-  - gpu_job
-  - gpu_type
   - nextflow_params
   - custom_config
   - bc_num_hours
